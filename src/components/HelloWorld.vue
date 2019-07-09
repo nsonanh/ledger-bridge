@@ -1,12 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
     <button v-on:click="connectLedger">Connect Ledger</button>
+    <button v-on:click="cancelConnectingLedger" style="margin-left:40px">Cancel</button>
   </div>
 </template>
 
@@ -17,6 +13,9 @@ import nem from "nem-sdk";
 
 export default {
   name: 'HelloWorld',
+  created() {
+    window.addEventListener("beforeunload", this.cancelConnectingLedger);
+  },
   props: {
     msg: String
   },
@@ -28,8 +27,14 @@ export default {
         window.close();
       })
       .catch(error => {
-        console.log('error: ' + error);
+        window.opener.postMessage({ message: "cannotGetAccount", result: error }, "*");
+        window.close();
       });
+      
+    },
+    cancelConnectingLedger () {
+      window.opener.postMessage({ message: "deniedByTheUser", result: "Failed to creat wallet. Dinied by the user!!!" }, "*");
+      window.close();
     },
 
     RunCallbackFunction(wallet) {

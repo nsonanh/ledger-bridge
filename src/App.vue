@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Nem logo" src="./assets/logo.png">
+    <HelloWorld msg="Export Ledger Wallet"/>
   </div>
 </template>
 

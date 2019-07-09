@@ -22,13 +22,19 @@ export default {
   },
   methods: {
     connectLedger() {
-      this.createWallet(109)
+      this.createWallet(104)
       .then(wallet => {
-        console.log('wallet is: ' + JSON.stringify(wallet));
+        window.opener.postMessage({ message: "getAccountResult", result: wallet }, "*");
+        window.close();
       })
       .catch(error => {
         console.log('error: ' + error);
       });
+    },
+
+    RunCallbackFunction(wallet) {
+      window.opener.
+      console.log('RunCallbackFunction()');
     },
 
     createWallet(network) {

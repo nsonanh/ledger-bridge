@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import NemH from "./hw-app-nem";
+import NemH from "../hw-app-nem";
 import TransportWebUSB from "@ledgerhq/hw-transport-webusb";
 import nem from "nem-sdk";
 
 export default {
-  name: 'HelloWorld',
+  name: 'GetWalletComponent',
   created() {
     window.addEventListener("beforeunload", this.cancelConnectingLedger);
   },
@@ -20,8 +20,11 @@ export default {
     msg: String
   },
   methods: {
-    connectLedger() {
-      this.createWallet(104)
+    connectLedger: function() {
+      console.log('route: ' + JSON.stringify(this.$route));
+      const networkId = this.$route.params.networkId;
+      console.log('network id: ',networkId);
+      this.createWallet(networkId)
       .then(wallet => {
         window.opener.postMessage({ message: "getAccountResult", result: wallet }, "*");
         window.close();
@@ -35,11 +38,6 @@ export default {
     cancelConnectingLedger () {
       window.opener.postMessage({ message: "deniedByTheUser", result: "Failed to creat wallet. Dinied by the user!!!" }, "*");
       window.close();
-    },
-
-    RunCallbackFunction(wallet) {
-      window.opener.
-      console.log('RunCallbackFunction()');
     },
 
     createWallet(network) {

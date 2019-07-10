@@ -12,7 +12,8 @@
     "bip32-path": "^0.4.2",
     "core-js": "^2.6.5",
     "nem-sdk": "^1.6.7",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",

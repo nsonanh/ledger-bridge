@@ -6,12 +6,14 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GetWalletComponent from './components/GetWalletComponent.vue'
+import SignComponent from './components/SignComponent.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    GetWalletComponent,
+    SignComponent
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Nem logo" src="./assets/logo.png">
-    <HelloWorld msg="Export Ledger Wallet"/>
+    <GetWalletComponent msg="Export Ledger Wallet"/>
   </div>
 </template>
 
